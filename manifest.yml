@@ -1,0 +1,9 @@
+---
+applications:
+- name: super-mini
+  buildpack: https://github.com/gratiartis/java-buildpack
+  memory: 512M
+  instances: 1
+  host: super-mini
+  domain: cfapps.io
+  path: target/super-mini-1.0.0-SNAPSHOT.jar
