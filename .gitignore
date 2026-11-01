@@ -1,11 +1,7 @@
-*/target/*
-=======
-*.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
-*.classpath
-*.project
-*.settings
+/target
+/.settings
+/.classpath
+/.project
+/.idea
+*.iml
+.DS_Store
