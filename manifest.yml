@@ -1,9 +1,17 @@
 ---
+# Cloud Foundry application manifest. Build first (./mvnw package), then
+# `cf push` from the repository root.
+#
+# The Java buildpack is pinned to a release that ships a Java 25 JRE; its
+# default JRE is 17, so JBP_CONFIG_OPEN_JDK_JRE selects the 25 line. With no
+# `routes`, Cloud Foundry gives the app a route on the foundation's default
+# domain.
 applications:
-- name: super-mini
-  buildpack: https://github.com/gratiartis/java-buildpack
-  memory: 512M
-  instances: 1
-  host: super-mini
-  domain: cfapps.io
-  path: target/super-mini-1.0.0-SNAPSHOT.jar
+  - name: super-mini
+    path: target/super-mini-1.0.0-SNAPSHOT.jar
+    memory: 512M
+    instances: 1
+    buildpacks:
+      - https://github.com/cloudfoundry/java-buildpack.git#v5.1.1
+    env:
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 25.+ } }'
